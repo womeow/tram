@@ -1,0 +1,460 @@
+{
+  "format": "tram-lab-1",
+  "scenario": "normal",
+  "elapsed": 0,
+  "version": "1.4",
+  "stop": 2,
+  "dir": -1,
+  "active": "def eta(distance_m, speed_mps, delay_s, status):\n    if status == \"broken\":\n        return None\n    if status == \"blocked\":\n        return None\n    if distance_m < 0:\n        return None\n    if distance_m == 0:\n        return 0\n    if speed_mps <= 0:\n        return None\n    return distance_m / speed_mps + delay_s",
+  "events": [
+    {
+      "tag": "start",
+      "msg": "Открыт стенд. Исходный скрипт ETA v1.4.",
+      "time": 0,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "step",
+      "msg": "Шаг модели +15 с",
+      "time": 15,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "scenario",
+      "msg": "Сценарий: Пробка",
+      "time": 0,
+      "scenario": "jam",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "jam",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "jam",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "scenario",
+      "msg": "Сценарий: Поломка",
+      "time": 0,
+      "scenario": "broken",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "broken",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "scenario",
+      "msg": "Сценарий: Перекрытие",
+      "time": 0,
+      "scenario": "incident",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "incident",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "script",
+      "msg": "Скрипт применён",
+      "time": 0,
+      "scenario": "incident",
+      "version": "1.4",
+      "stop": 3,
+      "direction": -1,
+      "code": "def eta(distance_m, speed_mps, delay_s, status):\n    if status == \"broken\":\n        return None\n    if status == \"blocked\":\n        return None\n    if distance_m < 0:\n        return None\n    if distance_m == 0:\n        return 0\n    if speed_mps <= 0:\n        return None\n    return distance_m / speed_mps + delay_s"
+    },
+    {
+      "tag": "scenario",
+      "msg": "Сценарий: Пробка",
+      "time": 0,
+      "scenario": "jam",
+      "version": "1.4",
+      "stop": 3,
+      "direction": -1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "jam",
+      "version": "1.4",
+      "stop": 3,
+      "direction": -1
+    },
+    {
+      "tag": "scenario",
+      "msg": "Сценарий: Поломка",
+      "time": 0,
+      "scenario": "broken",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "broken",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "checks",
+      "msg": "Проверки: 9/9",
+      "time": 0,
+      "scenario": "broken",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1,
+      "checks": [
+        {
+          "name": "Норма",
+          "expected": 75,
+          "seen": 75,
+          "pass": true
+        },
+        {
+          "name": "Пробка: скорость и задержка",
+          "expected": 315,
+          "seen": 315,
+          "pass": true
+        },
+        {
+          "name": "Поломка даже при устаревшей ненулевой скорости",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Перекрытие без известного времени",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Остановка уже позади",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Трамвай у остановки",
+          "expected": 0,
+          "seen": 0,
+          "pass": true
+        },
+        {
+          "name": "Нулевая скорость до остановки",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Направление и движение вагона 701",
+          "expected": 1,
+          "seen": 1,
+          "pass": true
+        },
+        {
+          "name": "Направление и движение вагона 702",
+          "expected": -1,
+          "seen": -1,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "tag": "scenario",
+      "msg": "Сценарий: Обычное движение",
+      "time": 0,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "step",
+      "msg": "Шаг модели +15 с",
+      "time": 15,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "version",
+      "msg": "Активирована версия 1.5",
+      "time": 15,
+      "scenario": "normal",
+      "version": "1.5",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "normal",
+      "version": "1.5",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "step",
+      "msg": "Шаг модели +15 с",
+      "time": 15,
+      "scenario": "normal",
+      "version": "1.5",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "checks",
+      "msg": "Проверки: 7/9",
+      "time": 15,
+      "scenario": "normal",
+      "version": "1.5",
+      "stop": 3,
+      "direction": 1,
+      "checks": [
+        {
+          "name": "Норма",
+          "expected": 75,
+          "seen": 75,
+          "pass": true
+        },
+        {
+          "name": "Пробка: скорость и задержка",
+          "expected": 315,
+          "seen": 315,
+          "pass": true
+        },
+        {
+          "name": "Поломка даже при устаревшей ненулевой скорости",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Перекрытие без известного времени",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Остановка уже позади",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Трамвай у остановки",
+          "expected": 0,
+          "seen": 0,
+          "pass": true
+        },
+        {
+          "name": "Нулевая скорость до остановки",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Направление и движение вагона 701",
+          "expected": 1,
+          "seen": -1,
+          "pass": false
+        },
+        {
+          "name": "Направление и движение вагона 702",
+          "expected": -1,
+          "seen": 1,
+          "pass": false
+        }
+      ]
+    },
+    {
+      "tag": "version",
+      "msg": "Активирована версия 1.4",
+      "time": 15,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "checks",
+      "msg": "Проверки: 9/9",
+      "time": 0,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1,
+      "checks": [
+        {
+          "name": "Норма",
+          "expected": 75,
+          "seen": 75,
+          "pass": true
+        },
+        {
+          "name": "Пробка: скорость и задержка",
+          "expected": 315,
+          "seen": 315,
+          "pass": true
+        },
+        {
+          "name": "Поломка даже при устаревшей ненулевой скорости",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Перекрытие без известного времени",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Остановка уже позади",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Трамвай у остановки",
+          "expected": 0,
+          "seen": 0,
+          "pass": true
+        },
+        {
+          "name": "Нулевая скорость до остановки",
+          "expected": null,
+          "seen": null,
+          "pass": true
+        },
+        {
+          "name": "Направление и движение вагона 701",
+          "expected": 1,
+          "seen": 1,
+          "pass": true
+        },
+        {
+          "name": "Направление и движение вагона 702",
+          "expected": -1,
+          "seen": -1,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "tag": "scenario",
+      "msg": "Сценарий: Перекрытие",
+      "time": 0,
+      "scenario": "incident",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "incident",
+      "version": "1.4",
+      "stop": 3,
+      "direction": 1
+    },
+    {
+      "tag": "scenario",
+      "msg": "Сценарий: Обычное движение",
+      "time": 0,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 2,
+      "direction": -1
+    },
+    {
+      "tag": "reset",
+      "msg": "Сценарий возвращён к T+0",
+      "time": 0,
+      "scenario": "normal",
+      "version": "1.4",
+      "stop": 2,
+      "direction": -1
+    }
+  ],
+  "draft": "def eta(distance_m, speed_mps, delay_s, status):\n    if status == \"broken\":\n        return None\n    if status == \"blocked\":\n        return None\n    if distance_m < 0:\n        return None\n    if distance_m == 0:\n        return 0\n    if speed_mps <= 0:\n        return None\n    return distance_m / speed_mps + delay_s"
+}
